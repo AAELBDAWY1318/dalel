@@ -1,12 +1,13 @@
-import 'package:dalel/core/utils/app_assets.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:dalel/features/onboarding/data/models/on_boarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CustomPageView extends StatelessWidget {
   final PageController controller;
-  const CustomPageView({super.key, required this.controller});
+  final Function(int)? onPageChanged;
+  const CustomPageView({super.key, required this.controller, this.onPageChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,15 @@ class CustomPageView extends StatelessWidget {
       height: 500.0,
       child: PageView.builder(
         physics: const BouncingScrollPhysics(),
+        onPageChanged: onPageChanged,
         controller: controller,
+        itemCount: onBoardingData.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 46.0),
             child: Column(
               children: [
-                Image.asset(Assets.assetsImagesOnboarding1),
+                Image.asset(onBoardingData[index].imagePath),
                 const SizedBox(
                   height: 24.0,
                 ),
@@ -36,8 +39,8 @@ class CustomPageView extends StatelessWidget {
                 const SizedBox(
                   height: 32.0,
                 ),
-                const Text(
-                  "Explore The history with Dalel in a smart way", 
+                Text(
+                  onBoardingData[index].title, 
                   style: AppTextStyles.poppins50024,
                   textAlign: TextAlign.center,
                   maxLines: 2,
@@ -47,7 +50,7 @@ class CustomPageView extends StatelessWidget {
                   height: 24.0,
                 ), 
                 Text(
-                  "Using our app’s history libraries you can find many historical periods ", 
+                  onBoardingData[index].subTitle, 
                   style: AppTextStyles.poppins50024.copyWith(
                     fontSize: 16.0, 
                     fontWeight: FontWeight.w300, 

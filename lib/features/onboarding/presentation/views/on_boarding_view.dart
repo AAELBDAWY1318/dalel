@@ -1,15 +1,24 @@
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
+import 'package:dalel/core/widgets/custom_text_button.dart';
+import 'package:dalel/features/onboarding/data/models/on_boarding_model.dart';
 import 'package:dalel/features/onboarding/presentation/widgets/page_view.dart';
 import 'package:dalel/features/onboarding/presentation/widgets/skip_button.dart';
 import 'package:flutter/material.dart';
 
-class OnBoardingView extends StatelessWidget {
+class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
 
   @override
+  State<OnBoardingView> createState() => _OnBoardingViewState();
+}
+
+class _OnBoardingViewState extends State<OnBoardingView> {
+  final PageController controller = PageController();
+  int currentIndex = 0;
+  @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController();
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -21,11 +30,41 @@ class OnBoardingView extends StatelessWidget {
                 height: 40.0,
               ),
               SkipButton(onTap: () {}),
-              CustomPageView(controller: controller),
-              const SizedBox(
-                height: 30.0,
+              CustomPageView(
+                controller: controller,
+                onPageChanged: (index) {
+                  currentIndex = index;
+                  setState(() {});
+                },
               ),
-              CustomButton(text: AppStrings.next, onPressed: () {}),
+              const SizedBox(
+                height: 20.0,
+              ),
+              currentIndex == onBoardingData.length - 1
+                  ? Column(
+                      children: [
+                        CustomButton(
+                            text: AppStrings.createAccount,
+                            onPressed: () {
+                              customPushReplacementNavigation(
+                                  context, "/signUp");
+                            }),
+                        CustomTextButton(
+                          onPressed: () {
+                            customPushReplacementNavigation(context, "/login");
+                          },
+                          text: AppStrings.loginNow,
+                        ),
+                      ],
+                    )
+                  : CustomButton(
+                      text: AppStrings.next,
+                      onPressed: () {
+                        controller.nextPage(
+                            duration: const Duration(microseconds: 200),
+                            curve: Curves.decelerate);
+                        setState(() {});
+                      }),
               const SizedBox(
                 height: 17.0,
               ),
