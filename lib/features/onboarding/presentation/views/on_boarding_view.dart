@@ -1,4 +1,6 @@
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigate.dart';
+import 'package:dalel/core/services/locator_service.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/core/widgets/custom_text_button.dart';
@@ -29,7 +31,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               const SizedBox(
                 height: 40.0,
               ),
-              SkipButton(onTap: () {}),
+              SkipButton(onTap: () {
+                getIt<CacheHelper>().saveData(key: "isVisited", value: true);
+                customPushReplacementNavigation(context, "/login");
+              }),
               CustomPageView(
                 controller: controller,
                 onPageChanged: (index) {
@@ -46,11 +51,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         CustomButton(
                             text: AppStrings.createAccount,
                             onPressed: () {
+                              getIt<CacheHelper>().saveData(key: "isVisited", value: true);
                               customPushReplacementNavigation(
                                   context, "/signUp");
                             }),
                         CustomTextButton(
                           onPressed: () {
+                            getIt<CacheHelper>().saveData(key: "isVisited", value: true);
                             customPushReplacementNavigation(context, "/login");
                           },
                           text: AppStrings.loginNow,
