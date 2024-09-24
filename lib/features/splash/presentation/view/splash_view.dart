@@ -20,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
     bool isVisited = getIt<CacheHelper>().getData(key: "isVisited")?? false;
     Timer(const Duration(seconds: 2), () {
       if(isVisited){
-        customPushReplacementNavigation(context, "/login");
+        customPushReplacementNavigation(context, "/signUp");
       }else{
         customPushReplacementNavigation(context, "/onBoarding");
       }
