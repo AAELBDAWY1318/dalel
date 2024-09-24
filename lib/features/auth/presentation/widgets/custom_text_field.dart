@@ -7,26 +7,33 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final Widget? suffixIcon;
   final bool? obscureText;
-
+  final TextEditingController? controller;
   const CustomTextField(
       {super.key,
       this.validator,
       required this.label,
       this.obscureText,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 24.0, left: 8, right: 8),
       child: TextFormField(
-        validator: validator,
+        validator: validator ??
+            (val) {
+              if (val!.isEmpty) {
+                return "this value must be assigned";
+              }
+              return null;
+            },
+        controller: controller,
         cursorColor: AppColors.deepGrey,
         obscureText: obscureText ?? false,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           suffixIconColor: AppColors.deepGrey,
-          
           label: Text(label),
           labelStyle: AppTextStyles.poppins50024.copyWith(
             fontSize: 14.0,

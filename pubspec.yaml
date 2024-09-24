@@ -40,6 +40,9 @@ dependencies:
   shared_preferences: ^2.2.3
   get_it: ^8.0.0
   firebase_core: ^2.24.2
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.6
+  firebase_auth: ^4.16.0
 
 dev_dependencies:
   flutter_test:
