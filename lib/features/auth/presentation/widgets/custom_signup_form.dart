@@ -1,3 +1,4 @@
+import 'package:dalel/core/functions/email_validation.dart';
 import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/functions/show_custom_snack_bar.dart';
 import 'package:dalel/core/utils/app_colors.dart';
@@ -21,7 +22,7 @@ class SignUpForm extends StatelessWidget {
           showSnackBar(context, text: state.errorMessage, color: Colors.red);
         } else if (state is SignUpSuccess) {
           showSnackBar(context,
-              text: "SignUp Successfully",
+              text: "SignUp, please confirm your email",
               color: const Color.fromARGB(255, 9, 214, 115));
           customPushReplacementNavigation(context, "/login");
         }
@@ -43,6 +44,7 @@ class SignUpForm extends StatelessWidget {
               CustomTextField(
                 label: AppStrings.emailAddress,
                 controller: authCubit.email,
+                validator: validateEmail,
               ),
               CustomTextField(
                 label: AppStrings.password,

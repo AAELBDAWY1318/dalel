@@ -15,3 +15,23 @@ class SignUpFailure extends AuthState{
 
   SignUpFailure({required this.errorMessage});
 }
+
+class SignInLoading extends AuthState{}
+
+class SignInSuccess extends AuthState{}
+
+class SignInFailure extends AuthState{
+  final String errorMessage;
+
+  SignInFailure({required this.errorMessage});
+}
+
+class ResetPasswordLoading extends AuthState{}
+
+class ResetPasswordSuccess extends AuthState{}
+
+class ResetPasswordFailure extends AuthState{
+  final String errorMessage;
+
+  ResetPasswordFailure({required this.errorMessage});
+}

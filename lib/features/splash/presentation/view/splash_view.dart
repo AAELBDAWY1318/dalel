@@ -5,6 +5,7 @@ import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/services/locator_service.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -20,7 +21,15 @@ class _SplashViewState extends State<SplashView> {
     bool isVisited = getIt<CacheHelper>().getData(key: "isVisited")?? false;
     Timer(const Duration(seconds: 2), () {
       if(isVisited){
-        customPushReplacementNavigation(context, "/login");
+        if(FirebaseAuth.instance.currentUser == null){
+          customPushReplacementNavigation(context, "/login");
+        }else{
+          if(FirebaseAuth.instance.currentUser!.emailVerified){
+            customPushReplacementNavigation(context, "/home");
+          }else{
+            customPushReplacementNavigation(context, "/login");
+          }
+        }
       }else{
         customPushReplacementNavigation(context, "/onBoarding");
       }
