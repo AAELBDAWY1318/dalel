@@ -15,6 +15,13 @@ abstract class AppTextStyles{
     color: Colors.black, 
     fontFamily: "Poppins", 
   );
+
+  static final poppins50016 = TextStyle(
+    fontSize: 16.0, 
+    fontWeight: FontWeight.w500, 
+    color: AppColors.deepBrown, 
+    fontFamily: "Poppins", 
+  );
 }
 
 //Poppins

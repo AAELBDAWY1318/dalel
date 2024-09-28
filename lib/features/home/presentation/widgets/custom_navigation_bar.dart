@@ -20,8 +20,10 @@ class CustomNavigationBar extends StatelessWidget {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
         ],
+        type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.primaryColor,
         onTap: onTap,
         currentIndex: currentIndex,

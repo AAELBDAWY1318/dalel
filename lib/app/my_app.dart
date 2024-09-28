@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.offWhite,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.offWhite, 
+          elevation: 0.0, 
+        ),
       ),
     );
   }
