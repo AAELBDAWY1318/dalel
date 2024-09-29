@@ -7,21 +7,25 @@ class CustomHistorical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CustomPeriodContainer(
-          image: Assets.assetsImagesFrame,
-          text: "Ancient Egypt",
-          onTap: () {},
-        ),
-        const SizedBox(width: 16),
-        CustomPeriodContainer(
-          image: Assets.assetsImagesFrame,
-          text: "Ancient Egypt",
-          onTap: () {},
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomPeriodContainer(
+            image: Assets.assetsImagesFrame,
+            text: "Ancient Egypt",
+            onTap: () {},
+          ),
+          const SizedBox(width: 16),
+          CustomPeriodContainer(
+            image: Assets.assetsImagesFrame,
+            text: "Ancient Egypt",
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 }

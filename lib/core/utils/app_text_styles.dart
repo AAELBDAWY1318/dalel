@@ -22,6 +22,12 @@ abstract class AppTextStyles{
     color: AppColors.deepBrown, 
     fontFamily: "Poppins", 
   );
+  static final poppins40022 = TextStyle(
+    fontSize: 20.0, 
+    fontWeight: FontWeight.w400, 
+    color: AppColors.deepBrown, 
+    fontFamily: "Poppins", 
+  );
 }
 
 //Poppins
