@@ -67,3 +67,11 @@ abstract class AppStrings {
       enter4DigitCodeWeHaveSentTo = "Enter 4 digit code we have sent to ",
       haventReceivedVerificationCode = "Haven’t received verification code?";
 }
+
+abstract class FirebaseKeys {
+  static const String historicalPeriod = "historicalPeriods",
+      title = "title",
+      description = "description",
+      image = "image",
+      wars = "wars";
+}

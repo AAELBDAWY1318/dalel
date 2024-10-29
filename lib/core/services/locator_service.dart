@@ -3,6 +3,6 @@ import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
-void locatorService(){
+void locatorService() {
   getIt.registerSingleton<CacheHelper>(CacheHelper());
 }

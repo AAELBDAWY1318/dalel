@@ -1,12 +1,13 @@
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:dalel/features/home/data/models/historical_period_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomPeriodContainer extends StatelessWidget {
   final Function()? onTap;
-  final String image;
-  final String text;
-  const CustomPeriodContainer({super.key, this.onTap, required this.image, required this.text});
+  final HistoricalPeriod historicalPeriod;
+  const CustomPeriodContainer(
+      {super.key, this.onTap, required this.historicalPeriod});
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +34,19 @@ class CustomPeriodContainer extends StatelessWidget {
               width: 64,
               height: 48,
               child: Text(
-                text,
+                historicalPeriod.title,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.poppins50016,
               ),
             ),
-            const SizedBox(width:15.0 ),
+            const SizedBox(width: 15.0),
             SizedBox(
-              height: 64,
+              height: 90,
               width: 47,
-              child: Image.asset(
-                image, 
+              child: Image.network(
+                historicalPeriod.image,
                 fit: BoxFit.cover,
               ),
             ),
