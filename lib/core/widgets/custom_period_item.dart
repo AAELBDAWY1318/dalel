@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:dalel/features/home/data/models/historical_period_model.dart';
@@ -45,9 +46,11 @@ class CustomPeriodContainer extends StatelessWidget {
             SizedBox(
               height: 90,
               width: 47,
-              child: Image.network(
-                historicalPeriod.image,
-                fit: BoxFit.cover,
+              child: CachedNetworkImage(
+                imageUrl: historicalPeriod.image,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ],
