@@ -49,8 +49,8 @@ class CustomPeriodContainer extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: historicalPeriod.image,
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                   CircularProgressIndicator(color: AppColors.primaryColor),
+                errorWidget: (context, url, error) => Icon(Icons.error , color: AppColors.primaryColor),
               ),
             ),
           ],

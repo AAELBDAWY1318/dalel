@@ -1,3 +1,4 @@
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/widgets/custom_period_item.dart';
 import 'package:dalel/core/widgets/custom_shimmer_view.dart';
 import 'package:dalel/features/home/cubit/home_cubit.dart';
@@ -23,7 +24,12 @@ class CustomHistorical extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => CustomPeriodContainer(
-                    historicalPeriod: state.historicalPeriod[index]),
+                  historicalPeriod: state.historicalPeriod[index],
+                  onTap: () => customPushNavigation(
+                    context,
+                    "/historicalPeriod",
+                  ),
+                ),
                 itemCount: state.historicalPeriod.length,
                 separatorBuilder: (context, index) => const SizedBox(
                   width: 16.0,
