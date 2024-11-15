@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/app_strings.dart';
@@ -20,13 +19,10 @@ class HomeCubit extends Cubit<HomeState> {
       for (var document in querySnapshot.docs) {
         Map<String, dynamic> data = document.data(); // Get data as a Map
         data['id'] = document.id; // Optionally include the document ID
-        log("${data["image"]}");
         documents.add(HistoricalPeriod.fromJson(data));
       }
-      log("${documents[0]}");
       emit(GetHistoricalPeriodsSuccess(historicalPeriod: documents));
     }).catchError((error) {
-      log(error.toString());
       emit(GetHistoricalPeriodsFailure(errorMessage: error.toString()));
     });
   }

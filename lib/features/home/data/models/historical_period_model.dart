@@ -24,6 +24,14 @@ class HistoricalPeriod {
     );
   }
 
+  // Map<String , dynamic> toJson(){
+  //   return {
+  //     FirebaseKeys.title: title, 
+  //     FirebaseKeys.description : description, 
+  //     FirebaseKeys.image: image , 
+  //     FirebaseKeys.wars: 
+  //   };
+  // }
   @override
   String toString() {
     return 'HistoricalPeriod{title: $title, description: $description, image: $image, wars: $wars, id: $id}';
