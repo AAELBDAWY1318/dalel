@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 void customPushNavigation(BuildContext context, String path,
-    {Map<String, dynamic>? data}) {
+    {dynamic data}) {
   GoRouter.of(context).push(path, extra: data);
 }
 

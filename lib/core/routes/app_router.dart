@@ -46,7 +46,7 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/historicalPeriod",
     builder: (context, state){
-      final data = state.extra as Map<String , dynamic>?;
+      final  data = state.extra  ;
       return HistoricalPeriodView(data: data);
     },
   ),

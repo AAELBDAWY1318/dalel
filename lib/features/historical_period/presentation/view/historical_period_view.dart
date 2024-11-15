@@ -1,29 +1,42 @@
+import 'package:dalel/core/widgets/custom_header_texr.dart';
+import 'package:dalel/core/widgets/custom_war_list.dart';
+import 'package:dalel/features/historical_period/presentation/widgets/custom_historical_period_des.dart';
 import 'package:dalel/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class HistoricalPeriodView extends StatelessWidget {
-  final Map<String, dynamic>? data;
+  final dynamic data;
   const HistoricalPeriodView({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
             //!appbar section
-            SliverToBoxAdapter(child: SizedBox(height: 50.0)),
-            SliverToBoxAdapter(child: CustomAppBar()),
-            SliverToBoxAdapter(child: SizedBox(height: 32.0)),
+            const SliverToBoxAdapter(child: SizedBox(height: 50.0)),
+            const SliverToBoxAdapter(child: CustomAppBar()),
+            const SliverToBoxAdapter(child: SizedBox(height: 32.0)),
             // !custom title Section
+            SliverToBoxAdapter(child: CustomHeaderText(text: data.title)),
+            const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
+            SliverToBoxAdapter(
+                child: CustomHistoricalPeriodDescription(
+              description: data.description,
+              image: data.image,
+            )),
 
-            SliverToBoxAdapter(),
+            //! custom war Section
+            const SliverToBoxAdapter(child: SizedBox(height: 32.0)),
+            const SliverToBoxAdapter(child: CustomHeaderText(text: "Wars")),
+            SliverToBoxAdapter(child: CustomWarItem(wars: data.wars,)),
+
           ],
         ),
       ),
     );
   }
 }
-
-//historicalPeriod

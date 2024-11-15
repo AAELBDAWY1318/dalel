@@ -28,7 +28,7 @@ class CustomHistorical extends StatelessWidget {
                   onTap: () => customPushNavigation(
                     context,
                     "/historicalPeriod",
-                    
+                    data: state.historicalPeriod[index],
                   ),
                 ),
                 itemCount: state.historicalPeriod.length,
