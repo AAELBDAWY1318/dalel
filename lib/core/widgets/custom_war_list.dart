@@ -42,7 +42,7 @@ class CustomWarItem extends StatelessWidget {
                 width: 64,
                 height: 48,
                 child: Text(
-                 wars[index][FirebaseKeys.title],
+                  wars[index][FirebaseKeys.title],
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,

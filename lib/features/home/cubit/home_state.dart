@@ -1,3 +1,4 @@
+import 'package:dalel/features/home/data/models/historical_char.dart';
 import 'package:dalel/features/home/data/models/historical_period_model.dart';
 
 sealed class HomeState {}
@@ -20,4 +21,18 @@ class GetHistoricalPeriodsFailure extends HomeState {
   final String errorMessage;
 
   GetHistoricalPeriodsFailure({required this.errorMessage});
+}
+
+class GetHistoricalCharactersLoading extends HomeState {}
+
+class GetHistoricalCharactersSuccess extends HomeState {
+  final List<HistoricalCharacters> historicalCharacters;
+
+  GetHistoricalCharactersSuccess({required this.historicalCharacters});
+}
+
+class GetHistoricalCharactersFailure extends HomeState {
+  final String errorMessage;
+
+  GetHistoricalCharactersFailure({required this.errorMessage});
 }
