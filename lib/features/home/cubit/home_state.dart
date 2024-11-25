@@ -1,5 +1,6 @@
 import 'package:dalel/features/home/data/models/historical_char.dart';
 import 'package:dalel/features/home/data/models/historical_period_model.dart';
+import 'package:dalel/features/home/data/models/souvenir_model.dart';
 
 sealed class HomeState {}
 
@@ -39,4 +40,14 @@ class GetHistoricalCharactersFailure extends HomeState {
 
 class GetSouvenirsLoading extends HomeState {}
 
-class GetSouvenirsSuccess extends HomeState {}
+class GetSouvenirsSuccess extends HomeState {
+  final List<SouvenirModel> souvenirs;
+
+  GetSouvenirsSuccess({required this.souvenirs});
+}
+
+class GetSouvenirsFailure extends HomeState {
+  final String errorMessage;
+
+  GetSouvenirsFailure({required this.errorMessage});
+}
