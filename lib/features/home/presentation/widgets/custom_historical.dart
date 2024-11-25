@@ -3,6 +3,7 @@ import 'package:dalel/core/widgets/custom_period_item.dart';
 import 'package:dalel/core/widgets/custom_shimmer_view.dart';
 import 'package:dalel/features/home/cubit/home_cubit.dart';
 import 'package:dalel/features/home/cubit/home_state.dart';
+import 'package:dalel/features/home/presentation/widgets/custom_error_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,7 @@ class CustomHistorical extends StatelessWidget {
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is GetHistoricalPeriodsFailure) {
-            return Text(state.errorMessage);
+            return CustomErrorText(text: state.errorMessage);
           } else if (state is GetHistoricalPeriodsSuccess) {
             return SizedBox(
               height: 96,

@@ -1,9 +1,14 @@
-import 'package:dalel/core/utils/app_assets.dart';
 import 'package:dalel/core/widgets/custom_item_overview.dart';
 import 'package:flutter/material.dart';
 
 class CustomListViewBuilder extends StatelessWidget {
-  const CustomListViewBuilder({super.key});
+  final String image, title;
+  final Function() onTap;
+  const CustomListViewBuilder(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +20,10 @@ class CustomListViewBuilder extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: 10,
         itemBuilder: (context, index) {
-          return const CustomItemOverview(
-            image: Assets.assetsImagesSalahaldin,
-            title: "Salah ElDin",
+          return CustomItemOverview(
+            image: image,
+            title: title,
+            onTap: onTap,
           );
         },
         separatorBuilder: (context, index) => const SizedBox(
