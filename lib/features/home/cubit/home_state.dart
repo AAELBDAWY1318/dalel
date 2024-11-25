@@ -36,3 +36,7 @@ class GetHistoricalCharactersFailure extends HomeState {
 
   GetHistoricalCharactersFailure({required this.errorMessage});
 }
+
+class GetSouvenirsLoading extends HomeState {}
+
+class GetSouvenirsSuccess extends HomeState {}
