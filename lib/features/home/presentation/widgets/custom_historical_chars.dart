@@ -1,3 +1,4 @@
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/widgets/custom_item_overview.dart';
 import 'package:dalel/core/widgets/custom_shimmer_view.dart';
 import 'package:dalel/features/home/cubit/home_cubit.dart';
@@ -27,7 +28,13 @@ class CustomHistoricalCharactersWidget extends StatelessWidget {
                 return CustomItemOverview(
                   image: state.historicalCharacters[index].image,
                   title: state.historicalCharacters[index].name,
-                  onTap: () {},
+                  onTap: () {
+                    customPushNavigation(
+                      context,
+                      "/historicalChar",
+                      data: state.historicalCharacters[index],
+                    );
+                  },
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(

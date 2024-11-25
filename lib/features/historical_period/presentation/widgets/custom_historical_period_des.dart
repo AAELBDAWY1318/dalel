@@ -54,13 +54,19 @@ class CustomHistoricalPeriodDescriptionState extends State<CustomHistoricalPerio
             ),
           ),
           const SizedBox(width: 20.0),
-          CachedNetworkImage(
-            height: 190,
-            width: 131,
-            fit: BoxFit.contain,
-            imageUrl: widget.image,
-            placeholder: (context, url) => CircularProgressIndicator(color: AppColors.primaryColor),
-            errorWidget: (context, url, error) => Icon(Icons.error, color: AppColors.primaryColor),
+          Container(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50.0), 
+            ),
+            child: CachedNetworkImage(
+              height: 190,
+              width: 131,
+              fit: BoxFit.contain,
+              imageUrl: widget.image,
+              placeholder: (context, url) => CircularProgressIndicator(color: AppColors.primaryColor),
+              errorWidget: (context, url, error) => Icon(Icons.error, color: AppColors.primaryColor),
+            ),
           ),
         ],
       ),

@@ -6,9 +6,9 @@ import 'package:dalel/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:dalel/features/home/presentation/widgets/custom_historical_chars.dart';
 import 'package:flutter/material.dart';
 
-class HistoricalPeriodView extends StatelessWidget {
+class HistoricalCharView extends StatelessWidget {
   final dynamic data;
-  const HistoricalPeriodView({super.key, required this.data});
+  const HistoricalCharView({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,19 @@ class HistoricalPeriodView extends StatelessWidget {
             const SliverToBoxAdapter(child: CustomAppBar()),
             const SliverToBoxAdapter(child: SizedBox(height: 32.0)),
             // !custom title Section
-            SliverToBoxAdapter(child: CustomHeaderText(text: data.title)),
+            SliverToBoxAdapter(child: CustomHeaderText(text: data.name)),
             const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
             SliverToBoxAdapter(
                 child: CustomHistoricalPeriodDescription(
-              description: data.description,
+              description: data.about,
               image: data.image,
             )),
-
             //! custom war Section
             const SliverToBoxAdapter(child: SizedBox(height: 32.0)),
             const SliverToBoxAdapter(child: CustomHeaderText(text: "Wars")),
             const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
             SliverToBoxAdapter(child: CustomWarItem(wars: data.wars,)),
-
-            //! custom recommedation Section
+             //! custom recommedation Section
             const SliverToBoxAdapter(child: SizedBox(height: 32.0)),
             const SliverToBoxAdapter(child: CustomHeaderText(text:AppStrings.recommendations)),
             const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
