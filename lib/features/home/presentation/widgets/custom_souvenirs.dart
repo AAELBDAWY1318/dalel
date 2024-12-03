@@ -1,3 +1,4 @@
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/widgets/custom_item_overview.dart';
 import 'package:dalel/core/widgets/custom_shimmer_view.dart';
 import 'package:dalel/features/home/cubit/home_cubit.dart';
@@ -13,7 +14,7 @@ class CustomSouvenir extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit()..getSouvenirs(),
-      child: BlocBuilder<HomeCubit , HomeState>(
+      child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is GetSouvenirsSuccess) {
             return SizedBox(
@@ -26,7 +27,10 @@ class CustomSouvenir extends StatelessWidget {
                   return CustomItemOverview(
                     image: state.souvenirs[index].image,
                     title: state.souvenirs[index].title,
-                    onTap: () {},
+                    onTap: () {
+                      customPushNavigation(context, "/souvenir",
+                          data: state.souvenirs[index]);
+                    },
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(

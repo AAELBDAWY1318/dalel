@@ -6,6 +6,7 @@ import 'package:dalel/features/historical_char/presentation/view/historical_char
 import 'package:dalel/features/historical_period/presentation/view/historical_period_view.dart';
 import 'package:dalel/features/home/presentation/view/app_layouts.dart';
 import 'package:dalel/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:dalel/features/souvenirs/presentation/view/souvenirs_view.dart';
 import 'package:dalel/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -56,5 +57,11 @@ final GoRouter router = GoRouter(routes: [
       builder: (context, state) {
         final data = state.extra;
         return HistoricalCharView(data: data);
+      }),
+  GoRoute(
+      path: "/souvenir",
+      builder: (context, state) {
+        final data = state.extra;
+        return SouvenirsView(data: data);
       }),
 ]);
