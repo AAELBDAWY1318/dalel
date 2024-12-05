@@ -1,3 +1,6 @@
+import 'package:dalel/core/utils/app_strings.dart';
+import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:dalel/features/bazar/presentation/widgets/custom_grid_souvenirs.dart';
 import 'package:flutter/material.dart';
 
 class BazarView extends StatelessWidget {
@@ -5,9 +8,16 @@ class BazarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Bazar View"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(AppStrings.bazar),
+        titleTextStyle: AppTextStyles.pacifico40064.copyWith(fontSize: 30.0),
+        centerTitle: true,
+      ),
+      body: const CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: CustomGridSouvenirs()), 
+        ],
       ),
     );
   }
