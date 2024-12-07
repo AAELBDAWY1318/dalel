@@ -1,3 +1,4 @@
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
@@ -17,10 +18,12 @@ class BazarView extends StatelessWidget {
       ),
       body: const CustomGridSouvenirs(),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () {
+          customPushNavigation(context, "/myCart");
+        },
         backgroundColor: AppColors.primaryColor,
         child: const Icon(
-          Icons.shopping_cart, 
+          Icons.shopping_cart,
         ),
       ),
     );
