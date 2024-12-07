@@ -9,6 +9,9 @@ part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
+  List<double> paymentList = [];
+  List<String> ids = [];
+  double sum = 0;
 
   getMyCart() {
     try {
@@ -29,5 +32,13 @@ class CartCubit extends Cubit<CartState> {
     } catch (e) {
       emit(GetMyCartFailure(errorMessage: e.toString()));
     }
+  }
+
+  Future<void> getTotalPayment() async {
+    
+    for (int i = 0; i < paymentList.length; i++) {
+      sum += paymentList[i];
+    }
+    emit(ChangePaymentState());
   }
 }

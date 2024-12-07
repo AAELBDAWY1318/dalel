@@ -62,7 +62,7 @@ class _CustomCartItemState extends State<CustomCartItem> {
                 ),
                 child: CachedNetworkImage(
                   imageUrl:
-                      "https://cdn.dribbble.com/users/4009983/screenshots/16047199/juraganmaterial-08_4x.jpg",
+                      widget.cartModel.image,
                   placeholder: (context, url) =>
                       CircularProgressIndicator(color: AppColors.primaryColor),
                   errorWidget: (context, url, error) =>

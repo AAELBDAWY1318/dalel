@@ -18,3 +18,5 @@ class GetMyCartFailure extends CartState {
 
   GetMyCartFailure({required this.errorMessage});
 }
+
+class ChangePaymentState extends CartState{}
