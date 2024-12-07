@@ -76,6 +76,7 @@ abstract class FirebaseKeys {
       name = "name",
       price = "price",
       about = "about",
+      userId = "userId", 
       historicalCharacters = "historical_characters",
       souvenirs = "souvenirs",
       wars = "wars";

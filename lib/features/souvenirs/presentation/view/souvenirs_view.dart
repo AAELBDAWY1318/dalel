@@ -26,7 +26,9 @@ class SouvenirsView extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 32.0)),
             SliverToBoxAdapter(child: CustomPriceWiget(price: data.price)),
             const SliverToBoxAdapter(child: SizedBox(height: 50.0)),
-            SliverToBoxAdapter(child: CustomButton(text: "ADD TO CARD", onPressed: (){})), 
+            SliverToBoxAdapter(child: CustomButton(text: "ADD TO CARD", onPressed: (){
+              
+            })), 
           ],
         ),
       ),
