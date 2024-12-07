@@ -1,9 +1,12 @@
 
 import 'package:dalel/core/widgets/custom_button.dart';
+import 'package:dalel/features/home/data/models/souvenir_model.dart';
 import 'package:dalel/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:dalel/features/souvenirs/cubit/souvenir_cubit.dart';
 import 'package:dalel/features/souvenirs/presentation/widgets/price_widget.dart';
 import 'package:dalel/features/souvenirs/presentation/widgets/souvenir_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SouvenirsView extends StatelessWidget {
   final dynamic data;
@@ -27,7 +30,12 @@ class SouvenirsView extends StatelessWidget {
             SliverToBoxAdapter(child: CustomPriceWiget(price: data.price)),
             const SliverToBoxAdapter(child: SizedBox(height: 50.0)),
             SliverToBoxAdapter(child: CustomButton(text: "ADD TO CARD", onPressed: (){
-              
+              context.read<SouvenirCubit>().addToCart(SouvenirModel(
+                id: data.id, 
+                image: data.image, 
+                price: data.price, 
+                title: data.title, 
+              ));
             })), 
           ],
         ),

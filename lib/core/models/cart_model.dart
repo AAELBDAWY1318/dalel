@@ -6,11 +6,13 @@ class CartModel {
   final String image;
   final String title;
   final String price;
+  final String id;
 
   CartModel(
       {required this.userId,
       required this.image,
       required this.title,
+      required this.id,
       required this.price});
 
   factory CartModel.fromJson(Map json) {
@@ -18,12 +20,14 @@ class CartModel {
         userId: json[FirebaseKeys.userId],
         image: json[FirebaseKeys.image],
         title: json[FirebaseKeys.title],
+        id: json["id"],
         price: json[FirebaseKeys.price]);
   }
 
   factory CartModel.fromSouvenir(SouvenirModel souvenirModel, String id) {
     return CartModel(
         userId: id,
+        id: souvenirModel.id,
         image: souvenirModel.image,
         title: souvenirModel.title,
         price: souvenirModel.price);

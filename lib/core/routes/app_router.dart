@@ -7,6 +7,7 @@ import 'package:dalel/features/historical_period/presentation/view/historical_pe
 import 'package:dalel/features/home/presentation/view/app_layouts.dart';
 import 'package:dalel/features/my_cart/presentation/view/my_cart_view.dart';
 import 'package:dalel/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:dalel/features/souvenirs/cubit/souvenir_cubit.dart';
 import 'package:dalel/features/souvenirs/presentation/view/souvenirs_view.dart';
 import 'package:dalel/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,7 +64,10 @@ final GoRouter router = GoRouter(routes: [
       path: "/souvenir",
       builder: (context, state) {
         final data = state.extra;
-        return SouvenirsView(data: data);
+        return BlocProvider(
+          create: (context) => SouvenirCubit(),
+          child: SouvenirsView(data: data),
+        );
       }),
   GoRoute(
     path: "/myCart",
