@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/features/home/cubit/home_state.dart';
@@ -47,22 +49,34 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
-  getSouvenirs(){
+  bool _isFetchingSouvenirs = false;
+
+  getSouvenirs() {
+    if (_isFetchingSouvenirs) return;
+    _isFetchingSouvenirs = true;
+
     emit(GetSouvenirsLoading());
     FirebaseFirestore.instance
         .collection(FirebaseKeys.souvenirs)
         .get()
         .then((querySnapshot) {
       List<SouvenirModel> documents = [];
-
       for (var document in querySnapshot.docs) {
-        Map<String, dynamic> data = document.data(); // Get data as a Map
-        data['id'] = document.id; // Optionally include the document ID
+        Map<String, dynamic> data = document.data();
+        data['id'] = document.id;
         documents.add(SouvenirModel.fromJson(data));
       }
-      emit(GetSouvenirsSuccess(souvenirs: documents));
+      if (!isClosed) emit(GetSouvenirsSuccess(souvenirs: documents));
     }).catchError((error) {
-      emit(GetSouvenirsFailure(errorMessage: error.toString()));
+      if (!isClosed) emit(GetSouvenirsFailure(errorMessage: error.toString()));
+    }).whenComplete(() {
+      _isFetchingSouvenirs = false;
     });
+  }
+
+  @override
+  Future<void> close() {
+    log('Cubit is being closed');
+    return super.close();
   }
 }

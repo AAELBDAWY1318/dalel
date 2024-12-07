@@ -1,3 +1,4 @@
+import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:dalel/features/bazar/presentation/widgets/custom_grid_souvenirs.dart';
@@ -14,10 +15,13 @@ class BazarView extends StatelessWidget {
         titleTextStyle: AppTextStyles.pacifico40064.copyWith(fontSize: 30.0),
         centerTitle: true,
       ),
-      body: const CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: CustomGridSouvenirs()), 
-        ],
+      body: const CustomGridSouvenirs(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        backgroundColor: AppColors.primaryColor,
+        child: const Icon(
+          Icons.shopping_cart, 
+        ),
       ),
     );
   }

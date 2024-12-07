@@ -12,50 +12,61 @@ class CustomGridSouvenirs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double itemWidth = 90; // const width for item
+    const double itemHeight = 200; // const height for item
+    const double spacing = 10; // Spacing between items
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final int crossAxisCount = (screenWidth / (itemWidth + spacing)).floor();
     return BlocProvider(
       create: (context) => HomeCubit()..getSouvenirs(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           if (state is GetSouvenirsSuccess) {
-            return SizedBox(
-              height: state.souvenirs.length / 2 * 133,
-              child: GridView.count(
-                scrollDirection: Axis.vertical,
-                crossAxisCount: 3,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                children: List.generate(
-                  state.souvenirs.length,
-                  (index) {
-                    return CustomItemOverview(
-                      image: state.souvenirs[index].image,
-                      title: state.souvenirs[index].title,
-                      onTap: () {
-                        customPushNavigation(context, "/souvenir",
-                            data: state.souvenirs[index]);
-                      },
-                    );
-                  },
-                ),
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
+                childAspectRatio: 0.9,
               ),
+              itemCount: state.souvenirs.length,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Container(
+                  width: itemWidth,
+                  height: itemHeight,
+                  alignment: Alignment.center,
+                  child: CustomItemOverview(
+                    image: state.souvenirs[index].image,
+                    title: state.souvenirs[index].title,
+                    onTap: () {
+                      customPushNavigation(context, "/souvenir",
+                          data: state.souvenirs[index]);
+                    },
+                  ),
+                );
+              },
             );
           } else if (state is GetSouvenirsFailure) {
             return CustomErrorText(text: state.errorMessage);
           } else {
-            return SizedBox(
-              height: 133,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) =>
-                    const CustomShimmerView(width: 99, height: 133),
-                itemCount: 3,
-                separatorBuilder: (context, index) => const SizedBox(
-                  width: 16.0,
-                ),
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
+                childAspectRatio: 0.9,
               ),
+              itemCount: 3,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Container(
+                  width: itemWidth,
+                  height: itemHeight,
+                  alignment: Alignment.center,
+                  child: const CustomShimmerView(width: 99, height: 133),
+                );
+              },
             );
           }
         },
