@@ -61,8 +61,7 @@ class _CustomCartItemState extends State<CustomCartItem> {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      widget.cartModel.image,
+                  imageUrl: widget.cartModel.image,
                   placeholder: (context, url) =>
                       CircularProgressIndicator(color: AppColors.primaryColor),
                   errorWidget: (context, url, error) =>

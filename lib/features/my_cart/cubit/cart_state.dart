@@ -19,4 +19,14 @@ class GetMyCartFailure extends CartState {
   GetMyCartFailure({required this.errorMessage});
 }
 
-class ChangePaymentState extends CartState{}
+class ChangePaymentState extends CartState {}
+
+class DeleteFromCartLoading extends CartState {}
+
+class DeleteFromCartSuccess extends CartState {}
+
+class DeleteFromCartFailure extends CartState {
+  final String errorMessage;
+
+  DeleteFromCartFailure({required this.errorMessage});
+}
