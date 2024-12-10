@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dalel/core/functions/show_custom_snack_bar.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
@@ -25,13 +27,19 @@ class MyCartView extends StatelessWidget {
           actions: [
             BlocConsumer<CartCubit, CartState>(
               listener: (context, state) {
-                if(state is DeleteFromCartLoading){
-                  showSnackBar(context, text: "waiting....", color: AppColors.primaryColor);
-                }else if(state is DeleteFromCartFailure){
-                  showSnackBar(context, text: "Failure, please try again", color: Colors.red);
-                }else if (state is DeleteFromCartSuccess){
-                  showSnackBar(context, text: "Successfully", color: Colors.green);
+                if (state is DeleteFromCartLoading) {
+                  showSnackBar(context,
+                      text: "waiting....", color: AppColors.primaryColor);
+                } else if (state is DeleteFromCartFailure) {
+                  showSnackBar(context,
+                      text: "Failure, please try again", color: Colors.red);
+                } else if (state is DeleteFromCartSuccess) {
+                  showSnackBar(context,
+                      text: "Successfully", color: Colors.green);
                   context.read<CartCubit>().getMyCart();
+                  context.read<CartCubit>().ids = [];
+                  context.read<CartCubit>().paymentList = [];
+                  log("${context.read<CartCubit>().ids}");
                 }
               },
               builder: (context, state) {

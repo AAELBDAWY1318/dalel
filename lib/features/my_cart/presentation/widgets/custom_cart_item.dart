@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 
 class CustomCartItem extends StatefulWidget {
   final CartModel cartModel;
+  final bool ? checkVisible;
 
   /// Callback to pass updated values back to the parent widget.
   final Future<void> Function(
       bool isChecked, double paymentPerItem, String productId)? onItemUpdated;
   const CustomCartItem(
-      {super.key, required this.cartModel, this.onItemUpdated});
+      {super.key, required this.cartModel, this.onItemUpdated, this.checkVisible});
 
   @override
   State<CustomCartItem> createState() => _CustomCartItemState();
@@ -33,16 +34,19 @@ class _CustomCartItemState extends State<CustomCartItem> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
-          child: Checkbox(
-            value: checkValue,
-            onChanged: (val) async {
-              setState(() {
-                checkValue = val!;
-              });
-              await _updatePerant();
-            },
-            activeColor: AppColors.grey,
+        Visibility(
+          visible: widget.checkVisible?? true,
+          child: Expanded(
+            child: Checkbox(
+              value: checkValue,
+              onChanged: (val) async {
+                setState(() {
+                  checkValue = val!;
+                });
+                await _updatePerant();
+              },
+              activeColor: AppColors.grey,
+            ),
           ),
         ),
         Container(
