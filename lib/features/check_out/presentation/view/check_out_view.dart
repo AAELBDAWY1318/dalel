@@ -4,6 +4,8 @@ import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:dalel/core/widgets/custom_header_texr.dart';
 import 'package:dalel/features/check_out/presentation/widgets/custom_address_component.dart';
+import 'package:dalel/features/check_out/presentation/widgets/custom_battom_bar.dart';
+import 'package:dalel/features/check_out/presentation/widgets/custom_cart_widget.dart';
 import 'package:dalel/features/check_out/presentation/widgets/custom_selected_product_section.dart';
 import 'package:flutter/material.dart';
 
@@ -71,9 +73,16 @@ class _CheckOutViewState extends State<CheckOutView> {
 
             const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
             const SliverToBoxAdapter(child: CustomHeaderText(text: AppStrings.paymentMethod)), 
-            
+            const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
+            const SliverToBoxAdapter(child: CustomCartWidget()), 
+
           ],
         ),
+      ),
+      bottomNavigationBar:CustomCheckOutBattomBar(
+        ids: ids,
+        paymentList: paymentList,
+        sum: sum,
       ),
     );
   }
