@@ -76,8 +76,13 @@ abstract class FirebaseKeys {
       name = "name",
       price = "price",
       about = "about",
-      userId = "userId", 
+      userId = "userId",
       historicalCharacters = "historical_characters",
       souvenirs = "souvenirs",
       wars = "wars";
+}
+
+abstract class APIStrings {
+  static const apiUrl = 'https://staging.fawaterk.com/api/v2/invoiceInitPay';
+  static const apiToken = 'd83a5d07aaeb8442dcbe259e6dae80a3f2e21a3a581e1a5acd';
 }

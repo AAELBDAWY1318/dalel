@@ -44,16 +44,19 @@ class CustomItemOverview extends StatelessWidget {
                     Icon(Icons.error, color: AppColors.primaryColor),
               ),
             ),
-            const SizedBox(height: 11),
-            Text(
-              title,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.poppins50016.copyWith(
-                fontSize: 14,
+            const SizedBox(height: 5),
+            Expanded(
+              child: Text(
+                title,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.poppins50016.copyWith(
+                  fontSize: 12,
+                ),
               ),
             ),
+            const SizedBox(height: 5),
           ],
         ),
       ),

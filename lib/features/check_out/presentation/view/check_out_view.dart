@@ -70,20 +70,20 @@ class _CheckOutViewState extends State<CheckOutView> {
               ids: ids,
               paymentList: paymentList,
             )),
-
             const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
-            const SliverToBoxAdapter(child: CustomHeaderText(text: AppStrings.paymentMethod)), 
+            const SliverToBoxAdapter(
+                child: CustomHeaderText(text: AppStrings.paymentMethod)),
             const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
-            const SliverToBoxAdapter(child: CustomCartWidget()), 
-
+            const SliverToBoxAdapter(child: CustomCartWidget()),
           ],
         ),
       ),
-      bottomNavigationBar:CustomCheckOutBattomBar(
+      bottomNavigationBar: CustomCheckOutBattomBar(
         ids: ids,
         paymentList: paymentList,
         sum: sum,
       ),
     );
   }
+  
 }
