@@ -48,14 +48,22 @@ class GetUserDataFailure extends CheckOutState {
   GetUserDataFailure({required this.errorMessage});
 }
 
-class ConfirmPaymentLoading extends CheckOutState{}
+class ConfirmPaymentLoading extends CheckOutState {}
 
-class ConfirmPaymentSuccess extends CheckOutState{}
+class ConfirmPaymentSuccess extends CheckOutState {}
 
-class ConfirmPaymentFailure extends CheckOutState{
+class ConfirmPaymentFailure extends CheckOutState {
   final String errorMessage;
 
   ConfirmPaymentFailure({required this.errorMessage});
 }
 
+class ConfirmOrderLoading extends CheckOutState {}
 
+class ConfirmOrderSuccess extends CheckOutState {}
+
+class ConfirmOrderFailure extends CheckOutState {
+  final String errorMessage;
+
+  ConfirmOrderFailure({required this.errorMessage});
+}

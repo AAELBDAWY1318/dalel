@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/database/cache/cache_helper.dart';
+import 'package:dalel/core/models/order_model.dart';
 import 'package:dalel/core/services/locator_service.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/features/home/data/models/souvenir_model.dart';
@@ -24,7 +25,6 @@ class CheckOutCubit extends Cubit<CheckOutState> {
 
   String? fawaterkurl;
   bool paymentCompleted = false;
-
   getProducts(List<String> ids) {
     try {
       emit(GetListOfProductLoading());
@@ -118,7 +118,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
       emit(ConfirmPaymentLoading());
       final data = {
         'payment_method_id': 2,
-        'cartTotal': '100',
+        'cartTotal': '$totalPayment',
         'currency': 'EGP',
         'customer': {
           'first_name': firstName,
@@ -135,7 +135,7 @@ class CheckOutCubit extends Cubit<CheckOutState> {
         'cartItems': [
           {
             'name': 'test',
-            'price': '100',
+            'price': '$totalPayment',
             'quantity': '1',
           },
         ],
@@ -160,6 +160,49 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     } catch (e) {
       log("${e.toString()} , ${e.hashCode}");
       emit(ConfirmPaymentFailure(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> confirmorder(OrderModel orderModel) async {
+    try {
+      emit(ConfirmOrderLoading());
+
+      // Add the order to Firestore
+      await FirebaseFirestore.instance.collection(FirebaseKeys.order).add({
+        FirebaseKeys.userId: orderModel.userId,
+        FirebaseKeys.payment: orderModel.payment,
+        FirebaseKeys.city: orderModel.city,
+        FirebaseKeys.addressDetails: orderModel.addressDetails,
+        FirebaseKeys.productIds: orderModel.productIds,
+      });
+
+      final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      // Batch write for deletion
+      WriteBatch batch = firestore.batch();
+
+      for (var productId in orderModel.productIds) {
+        QuerySnapshot querySnapshot = await firestore
+            .collection("cart")
+            .where("id", isEqualTo: productId)
+            .get();
+
+        for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+          batch.delete(doc.reference);
+          log("Prepared deletion for document with ID: ${doc.id}");
+        }
+      }
+
+      // Commit the batch
+      await batch.commit();
+
+      if (!isClosed) {
+        emit(ConfirmOrderSuccess());
+      }
+    } catch (e) {
+      if (!isClosed) {
+        emit(ConfirmOrderFailure(errorMessage: e.toString()));
+      }
     }
   }
 }

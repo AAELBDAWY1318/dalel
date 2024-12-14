@@ -1,3 +1,4 @@
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/utils/app_assets.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
@@ -31,7 +32,9 @@ class PaymentSuccessView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
-              CustomButton(text: AppStrings.backToHome, onPressed: (){}),
+              CustomButton(text: AppStrings.backToHome, onPressed: (){
+                customPushAndRemoveAll(context, "/home");
+              }),
             ],
           ),
         ),

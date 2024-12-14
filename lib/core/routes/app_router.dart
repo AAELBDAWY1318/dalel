@@ -4,6 +4,7 @@ import 'package:dalel/features/auth/presentation/views/login_view.dart';
 import 'package:dalel/features/auth/presentation/views/signup_view.dart';
 import 'package:dalel/features/check_out/presentation/view/check_out_view.dart';
 import 'package:dalel/features/check_out/presentation/view/success.dart';
+import 'package:dalel/features/check_out/presentation/view/waiting_view.dart';
 import 'package:dalel/features/check_out/presentation/view/web_view_navigation.dart';
 import 'package:dalel/features/historical_char/presentation/view/historical_char_view.dart';
 import 'package:dalel/features/historical_period/presentation/view/historical_period_view.dart';
@@ -93,5 +94,12 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/success",
     builder: (context, state) => const PaymentSuccessView(),
+  ),
+  GoRoute(
+    path: "/waiting",
+    builder: (context, state) {
+      final data = state.extra;
+      return WaitingView(order: data,);
+    },
   ),
 ]);
