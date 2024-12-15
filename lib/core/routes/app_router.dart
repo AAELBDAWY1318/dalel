@@ -11,6 +11,7 @@ import 'package:dalel/features/historical_period/presentation/view/historical_pe
 import 'package:dalel/features/home/presentation/view/app_layouts.dart';
 import 'package:dalel/features/my_cart/presentation/view/my_cart_view.dart';
 import 'package:dalel/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:dalel/features/profile/presentation/views/edit_profile.dart';
 import 'package:dalel/features/souvenirs/cubit/souvenir_cubit.dart';
 import 'package:dalel/features/souvenirs/presentation/view/souvenirs_view.dart';
 import 'package:dalel/features/splash/presentation/view/splash_view.dart';
@@ -99,7 +100,18 @@ final GoRouter router = GoRouter(routes: [
     path: "/waiting",
     builder: (context, state) {
       final data = state.extra;
-      return WaitingView(order: data,);
+      return WaitingView(
+        order: data,
+      );
+    },
+  ),
+  GoRoute(
+    path: "/edit",
+    builder: (context, state) {
+      final data = state.extra;
+      return EditProfileView(
+        userData: data,
+      );
     },
   ),
 ]);
