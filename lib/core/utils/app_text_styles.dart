@@ -38,6 +38,12 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.grey,
   );
+
+  static final font18500 = TextStyle(
+    fontSize: 19.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.deepBrown,
+  );
 }
 
 //Poppins
