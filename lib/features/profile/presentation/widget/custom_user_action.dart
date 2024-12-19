@@ -7,28 +7,16 @@ class CustomUserAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String , dynamic>> actions =[
-      {
-        "icon": Icons.person, 
-        'text': "Edit profile", 
-        "function": (){}
-      },
-      {
-        "icon": Icons.shopping_cart, 
-        'text': "Orders", 
-        "function": (){}
-      },
-      {
-        "icon": Icons.logout, 
-        'text': "Logout", 
-        "function": (){}
-      },
+    List<Map<String, dynamic>> actions = [
+      {"icon": Icons.shopping_cart, 'text': "Orders", "function": () {}},
+      {"icon": Icons.logout, 'text': "Logout", "function": () {}},
     ];
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
       child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) => CustomActionItem(data: actions[index]),
+          itemBuilder: (context, index) =>
+              CustomActionItem(data: actions[index]),
           separatorBuilder: (context, index) => Container(
                 height: 0.5,
                 color: AppColors.grey,

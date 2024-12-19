@@ -15,13 +15,14 @@ import 'package:dalel/features/profile/presentation/views/edit_profile.dart';
 import 'package:dalel/features/souvenirs/cubit/souvenir_cubit.dart';
 import 'package:dalel/features/souvenirs/presentation/view/souvenirs_view.dart';
 import 'package:dalel/features/splash/presentation/view/splash_view.dart';
+import 'package:dalel/test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/",
-    builder: (context, state) => const SplashView(),
+    builder: (context, state) => const TestScreen(),
   ),
   GoRoute(
     path: "/onBoarding",

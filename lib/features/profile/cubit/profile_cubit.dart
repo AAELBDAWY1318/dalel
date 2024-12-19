@@ -2,12 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
+
   getUserData() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
     try {
@@ -32,4 +34,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(GetUserDataFailure(errorMessage: e.toString()));
     }
   }
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
 }

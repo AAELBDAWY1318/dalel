@@ -12,7 +12,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppStrings.profile, 
+          AppStrings.profile,
           style: AppTextStyles.pacifico40064.copyWith(fontSize: 20.0),
         ),
         centerTitle: true,
@@ -22,12 +22,12 @@ class ProfileView extends StatelessWidget {
         child: CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(child: CustomProfileOverview()), 
+            SliverToBoxAdapter(child: CustomProfileOverview()),
             SliverToBoxAdapter(child: SizedBox(height: 30.0)),
-            SliverToBoxAdapter(child: CustomUserAction()), 
+            SliverToBoxAdapter(child: CustomUserAction()),
           ],
         ),
-      ), 
+      ),
     );
   }
 }

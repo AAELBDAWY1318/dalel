@@ -28,11 +28,14 @@ class CustomEditableImage extends StatelessWidget {
                   Icon(Icons.error, color: AppColors.primaryColor),
             ),
           ),
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(
-              Icons.edit,
-              color: AppColors.deepBrown,
+          GestureDetector(
+            onTap: () {},
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Icon(
+                Icons.edit,
+                color: AppColors.deepBrown,
+              ),
             ),
           ),
         ],
