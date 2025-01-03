@@ -22,3 +22,9 @@ class GetUserDataFailure extends ProfileState {
 
   GetUserDataFailure({required this.errorMessage});
 }
+
+class PickImageFailure extends ProfileState{
+  final String errorMessage;
+
+  PickImageFailure({required this.errorMessage});
+}

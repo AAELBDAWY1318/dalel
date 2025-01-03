@@ -1,15 +1,19 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
-
+  File? image;
+  final ImagePicker imagePicker = ImagePicker();
   getUserData() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
     try {
@@ -38,4 +42,15 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
+
+  pickImage() async {
+    final pickedImage =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      image = File(pickedImage.path);
+      log("$image");
+    } else {
+      emit(PickImageFailure(errorMessage: "No Sellected Image"));
+    }
+  }
 }
