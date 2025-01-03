@@ -28,3 +28,21 @@ class PickImageFailure extends ProfileState{
 
   PickImageFailure({required this.errorMessage});
 }
+
+class UploadImageFailure extends ProfileState{
+  final String errorMessage;
+
+  UploadImageFailure({required this.errorMessage});
+}
+
+class UpdateUserInfoSuccess extends ProfileState{
+  final Map data;
+
+  UpdateUserInfoSuccess({required this.data});
+}
+
+class UpdateUserInfoFailure extends ProfileState{
+  final String errorMessage;
+
+  UpdateUserInfoFailure({required this.errorMessage});
+}
