@@ -46,3 +46,17 @@ class UpdateUserInfoFailure extends ProfileState{
 
   UpdateUserInfoFailure({required this.errorMessage});
 }
+
+class UpdateInfoLoading extends ProfileState{}
+
+class UpdateInfoSuccess extends ProfileState{}
+
+class LogoutSuccess extends ProfileState{}
+
+class LogoutLoading extends ProfileState{}
+
+class LogoutFailure extends ProfileState{
+  final String errorMessage;
+
+  LogoutFailure({required this.errorMessage});
+}

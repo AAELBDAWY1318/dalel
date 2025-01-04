@@ -1,6 +1,9 @@
+import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:dalel/features/profile/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomUpdateInfoForm extends StatelessWidget {
   final dynamic userData;
@@ -8,29 +11,36 @@ class CustomUpdateInfoForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController firstNameController = TextEditingController();
-    TextEditingController lastNameController = TextEditingController();
-    emailController.text = userData["email"];
-    firstNameController.text = userData["firstName"];
-    lastNameController.text = userData["secondName"];
-    return Column(
-      children: [
-        CustomTextField(
-          label: "email",
-          controller: emailController,
-        ),
-        CustomTextField(
-          label: "First Name",
-          controller: firstNameController,
-        ),
-        CustomTextField(
-          label: "Last Name",
-          controller: lastNameController,
-        ),
-        const SizedBox(height: 30.0),
-        CustomButton(text: "Update Info", onPressed: (){}),
-      ],
+    return BlocProvider(
+      create: (context) => ProfileCubit()..setControllerValues(userData),
+      child: BlocBuilder<ProfileCubit, ProfileState>(
+        builder: (context, state) {
+          return Column(
+            children: [
+              CustomTextField(
+                label: "email",
+                controller: context.read<ProfileCubit>().emailController,
+              ),
+              CustomTextField(
+                label: "First Name",
+                controller: context.read<ProfileCubit>().firstNameController,
+              ),
+              CustomTextField(
+                label: "Last Name",
+                controller: context.read<ProfileCubit>().lastNameController,
+              ),
+              const SizedBox(height: 30.0),
+              state is UpdateInfoLoading
+                  ? CircularProgressIndicator(color: AppColors.primaryColor)
+                  : CustomButton(
+                      text: "Update Info",
+                      onPressed: () {
+                        context.read<ProfileCubit>().updateUserInfo();
+                      }),
+            ],
+          );
+        },
+      ),
     );
   }
 }

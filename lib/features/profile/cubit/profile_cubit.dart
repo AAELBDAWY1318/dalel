@@ -81,4 +81,41 @@ class ProfileCubit extends Cubit<ProfileState> {
       log(e.toString());
     }
   }
+
+  updateUserInfo() async {
+    try {
+      emit(UpdateInfoLoading());
+      String userId = FirebaseAuth.instance.currentUser!.uid;
+      CollectionReference collectionReference =
+          FirebaseFirestore.instance.collection("user");
+      DocumentReference documentReference = collectionReference.doc(userId);
+      DocumentSnapshot documentSnapshot = await documentReference.get();
+      Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+      data["email"] = emailController.text;
+      data["firstName"] = firstNameController.text;
+      data["secondName"] = lastNameController.text;
+      await documentReference.update(data);
+      log("$data");
+      emit(UpdateInfoSuccess());
+    } catch (e) {
+      emit(UpdateUserInfoFailure(errorMessage: "update Info failure"));
+    }
+  }
+
+  setControllerValues(Map data) {
+    emailController.text = data["email"];
+    firstNameController.text = data["firstName"];
+    lastNameController.text = data["secondName"];
+  }
+
+  logout() async {
+    try {
+      emit(LogoutLoading());
+      await FirebaseAuth.instance.signOut();
+      emit(LogoutSuccess());
+    } catch (e) {
+      emit(LogoutFailure(errorMessage: "logout failure"));
+    }
+  }
 }
